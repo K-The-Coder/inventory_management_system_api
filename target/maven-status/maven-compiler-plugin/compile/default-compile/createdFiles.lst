@@ -1,0 +1,15 @@
+com\web\inventory_management_system\util\ResponseUtil.class
+com\mycompany\inventory_management_system\JakartaRestConfiguration.class
+com\web\inventory_management_system\dao\UserDAO.class
+com\web\inventory_management_system\servlet\LoginServlet.class
+com\web\inventory_management_system\dao\ProductDAO.class
+com\web\inventory_management_system\servlet\CheckSessionServlet.class
+com\web\inventory_management_system\servlet\InventoryServlet.class
+com\mycompany\inventory_management_system\resources\JakartaEE10Resource.class
+com\web\inventory_management_system\model\User.class
+com\web\inventory_management_system\servlet\LogoutServlet.class
+com\web\inventory_management_system\servlet\AdminInventoryServlet.class
+com\web\inventory_management_system\model\Product.class
+com\web\inventory_management_system\util\DBConnection.class
+com\web\inventory_management_system\util\PasswordUtil.class
+com\web\inventory_management_system\servlet\AdminUserServlet.class
