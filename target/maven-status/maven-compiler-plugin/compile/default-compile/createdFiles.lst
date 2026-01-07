@@ -13,3 +13,4 @@ com\web\inventory_management_system\model\Product.class
 com\web\inventory_management_system\util\DBConnection.class
 com\web\inventory_management_system\util\PasswordUtil.class
 com\web\inventory_management_system\servlet\AdminUserServlet.class
+com\web\inventory_management_system\filter\AuthFilter.class

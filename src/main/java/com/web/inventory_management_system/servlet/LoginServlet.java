@@ -36,7 +36,6 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        json.setupResponseHeaders(response);
         
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -44,6 +43,7 @@ public class LoginServlet extends HttpServlet {
         Map<String, Object> responseData = new HashMap<>();
         
         if (username == null || password == null){
+            json.setupResponseHeaders(response);
             responseData.put("error", "Username and password required");
             responseData.put("authenticated", false);
             json.sendJsonResponse(response, HttpServletResponse.SC_BAD_REQUEST, responseData);
@@ -53,16 +53,18 @@ public class LoginServlet extends HttpServlet {
         User user = userDAO.authenticate(username);
         
         if (user == null || !PasswordUtil.verifyPassword(password, user.getPassword())){
+            json.setupResponseHeaders(response);
             responseData.put("error", "Invalid credentials");
             responseData.put("authenticated", false);
             json.sendJsonResponse(response, HttpServletResponse.SC_UNAUTHORIZED, responseData);
             return;
         }
         
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(true);
         session.setAttribute("userId", user.getId());
         session.setAttribute("role", user.getRole());
         
+        json.setupResponseHeaders(response);
         responseData.put("message", "Login successful");
         responseData.put("authenticated", true);
         responseData.put("role", user.getRole());

@@ -15,7 +15,7 @@ import java.io.IOException;
  *
  * @author kekem
  */
-@WebServlet(name = "AdminInventoryServlet", urlPatterns = {"/admin/inventory"})
+@WebServlet(name = "AdminInventoryServlet", urlPatterns = {"/api/admin/inventory"})
 public class AdminInventoryServlet extends HttpServlet {
     
     

@@ -16,7 +16,7 @@ import java.util.*;
  *
  * @author kekem
  */
-@WebServlet(name = "InventoryServlet", urlPatterns = {"/inventory"})
+@WebServlet(name = "InventoryServlet", urlPatterns = {"/api/inventory"})
 public class InventoryServlet extends HttpServlet {
     
     private final ResponseUtil json = new ResponseUtil();
@@ -35,16 +35,17 @@ public class InventoryServlet extends HttpServlet {
             throws ServletException, IOException {
         json.setupResponseHeaders(response);
         Map<String, Object> responseData = new HashMap<>();
-        
-        if (request.getSession(false) == null){
-            responseData.put("error", "Unauthorized");
-            responseData.put("authenticated", false);
-            json.sendJsonResponse(response, HttpServletResponse.SC_UNAUTHORIZED, responseData);
-        }
-        else{
+//        HttpSession session = request.getSession(false);
+//        
+//        if (session == null || session.getAttribute("role") == null){
+//            responseData.put("error", "Unauthorized");
+//            responseData.put("authenticated", false);
+//            json.sendJsonResponse(response, HttpServletResponse.SC_UNAUTHORIZED, responseData);
+//        }
+//        else{
             responseData.put("products", productDAO.getAllProducts());
             json.sendJsonResponse(response, HttpServletResponse.SC_OK, responseData);
-        }
+//        }
         
     }
 
