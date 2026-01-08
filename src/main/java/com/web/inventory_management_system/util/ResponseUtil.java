@@ -16,7 +16,7 @@ import java.util.*;
  * @author kekem
  */
 public class ResponseUtil {
-    private final Gson gson = new GsonBuilder()
+    private final Gson GSON = new GsonBuilder()
     .registerTypeAdapter(LocalDateTime.class, (JsonSerializer<LocalDateTime>) (LocalDateTime src, Type typeOfSrc, JsonSerializationContext context) -> 
             new JsonPrimitive(src.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)))
     .registerTypeAdapter(LocalDateTime.class, (JsonDeserializer<LocalDateTime>) (JsonElement json, Type typeOfT, JsonDeserializationContext context) -> 
@@ -26,7 +26,7 @@ public class ResponseUtil {
     public void sendJsonResponse(HttpServletResponse response, int statusCode, Map<String, Object> data) throws IOException{
         response.setStatus(statusCode);
         try (PrintWriter out = response.getWriter()){
-            out.write(gson.toJson(data));
+            out.write(GSON.toJson(data));
         }
     }
     

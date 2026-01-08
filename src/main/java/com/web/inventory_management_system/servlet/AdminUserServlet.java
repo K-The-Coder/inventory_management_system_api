@@ -19,9 +19,6 @@ import java.util.*;
  */
 @WebServlet(name = "AdminUserServlet", urlPatterns = {"/admin/users"})
 public class AdminUserServlet extends HttpServlet {
-    
-    private final ResponseUtil json = new ResponseUtil();
-    private final UserDAO userDAO = new UserDAO();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,6 +31,8 @@ public class AdminUserServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+       ResponseUtil json = new ResponseUtil();
+       UserDAO userDAO = new UserDAO();
        json.setupResponseHeaders(response);
        Map<String, Object> responseData = new HashMap<>();
        

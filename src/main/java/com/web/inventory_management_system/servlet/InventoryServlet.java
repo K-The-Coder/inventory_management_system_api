@@ -19,9 +19,6 @@ import java.util.*;
 @WebServlet(name = "InventoryServlet", urlPatterns = {"/api/inventory"})
 public class InventoryServlet extends HttpServlet {
     
-    private final ResponseUtil json = new ResponseUtil();
-    private final ProductDAO productDAO = new ProductDAO();
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -33,19 +30,14 @@ public class InventoryServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        ResponseUtil json = new ResponseUtil();
+        ProductDAO productDAO = new ProductDAO();
         json.setupResponseHeaders(response);
         Map<String, Object> responseData = new HashMap<>();
-//        HttpSession session = request.getSession(false);
-//        
-//        if (session == null || session.getAttribute("role") == null){
-//            responseData.put("error", "Unauthorized");
-//            responseData.put("authenticated", false);
-//            json.sendJsonResponse(response, HttpServletResponse.SC_UNAUTHORIZED, responseData);
-//        }
-//        else{
-            responseData.put("products", productDAO.getAllProducts());
-            json.sendJsonResponse(response, HttpServletResponse.SC_OK, responseData);
-//        }
+
+        responseData.put("products", productDAO.getAllProducts());
+        json.sendJsonResponse(response, HttpServletResponse.SC_OK, responseData);
+
         
     }
 

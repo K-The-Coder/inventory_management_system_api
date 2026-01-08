@@ -19,8 +19,6 @@ import java.util.Map;
 @WebServlet(name = "LogoutServlet", urlPatterns = {"/logout"})
 public class LogoutServlet extends HttpServlet {
     
-    private final ResponseUtil json = new ResponseUtil();
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -32,6 +30,7 @@ public class LogoutServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        ResponseUtil json = new ResponseUtil();
         Map<String, Object> responseData = new HashMap<>();
         HttpSession session = request.getSession();
         

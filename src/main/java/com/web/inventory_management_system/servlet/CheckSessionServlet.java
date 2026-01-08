@@ -17,8 +17,6 @@ import java.util.*;
  */
 @WebServlet(name = "CheckSessionServlet", urlPatterns = {"/checksession"})
 public class CheckSessionServlet extends HttpServlet {
-    
-    private final ResponseUtil json = new ResponseUtil();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,6 +29,7 @@ public class CheckSessionServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        ResponseUtil json = new ResponseUtil();
         Map<String, Object> responseData = new HashMap<>();
         json.setupResponseHeaders(response);
         response.setStatus(HttpServletResponse.SC_OK);

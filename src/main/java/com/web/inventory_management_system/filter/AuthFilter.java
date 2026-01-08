@@ -7,6 +7,7 @@ package com.web.inventory_management_system.filter;
 import com.web.inventory_management_system.util.ResponseUtil;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
+import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
@@ -23,12 +24,11 @@ import java.util.*;
  */
 @WebFilter(filterName = "AuthFilter", urlPatterns = {"/api/*"})
 public class AuthFilter implements Filter {
-    
-    private final ResponseUtil json = new ResponseUtil();
-    private final Map responseData = new HashMap<>();
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        ResponseUtil json = new ResponseUtil();
+        Map<String, Object> responseData = new HashMap<>();
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         HttpSession session = httpRequest.getSession(false);
@@ -46,5 +46,15 @@ public class AuthFilter implements Filter {
             json.sendJsonResponse(httpResponse, HttpServletResponse.SC_UNAUTHORIZED, responseData);
         }
         
+    }
+    
+     @Override
+    public void destroy() {
+        Filter.super.destroy(); 
+    }
+
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+        Filter.super.init(filterConfig); 
     }
 }

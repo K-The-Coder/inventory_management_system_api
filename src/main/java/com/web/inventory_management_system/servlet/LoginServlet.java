@@ -21,9 +21,6 @@ import java.util.Map;
  */
 @WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
-    
-    private final ResponseUtil json = new ResponseUtil();
-    private final UserDAO userDAO = new UserDAO();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,7 +33,8 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        ResponseUtil json = new ResponseUtil();
+        UserDAO userDAO = new UserDAO();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         
